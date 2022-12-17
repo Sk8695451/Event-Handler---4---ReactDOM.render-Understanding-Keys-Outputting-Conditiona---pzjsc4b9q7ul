@@ -1,4 +1,4 @@
-import React, {Component, useState} from "react";
+import React, { Component, useState } from "react";
 import '../styles/App.css';
 
 const App = () => {
@@ -17,7 +17,7 @@ const App = () => {
   const [passwordError, setPasswordError] = useState("");
 
   const handleNameChange = (event) => {
-      setName(event.target.value);
+    setName(event.target.value);
   }
 
   const handleEmailChange = (event) => {
@@ -50,41 +50,41 @@ const App = () => {
 
     let flag = true;
 
-    if(name == "" || email == "" || password == "" || phoneNumber == "") {
+    if (name == "" || email == "" || password == "" || phoneNumber == "") {
       setMessage("All fields are mandatory");
       flag = false;
     }
 
-    if(name != "" && name.match(/((^[0-9]+[a-z]+)|(^[a-z]+[0-9]+))+[0-9a-z]+$/i) == null) {
+    if (name != "" && name.match(/((^[0-9]+[a-z]+)|(^[a-z]+[0-9]+))+[0-9a-z]+$/i) == null) {
       setNameError("Name is not alphanumeric");
       flag = false;
     }
 
-    if(password != "" && password.length <= 5 ) {
+    if (password != "" && password.length <= 5) {
       setPasswordError("Password must contain atleast 6 letters");
       flag = false;
     }
 
-    if(email != "" && email.indexOf("@") == -1) {
+    if (email != "" && email.indexOf("@") == -1) {
       setEmailError("Email must contain @");
       flag = false;
     }
 
     let isNum = /^\d+$/.test(phoneNumber);
 
-    if(phoneNumber != "" && (!isNum)) {
+    if (phoneNumber != "" && (!isNum)) {
       setPhoneError("Phone Number must contain only numbers");
       flag = false;
     }
 
-    
+
     if (flag) {
       let username;
       const pos = email.indexOf("@");
       username = email.substring(0, pos);
       setMessage(`Hello ${username}`);
     }
-    
+
   }
 
   return (
@@ -94,13 +94,13 @@ const App = () => {
 
         <div className="grid-item">
           <label>Name</label>
-          <input type="text" data-testid = 'name' value={name} onChange={handleNameChange}/>
+          <input type="text" data-testid='name' value={name} onChange={handleNameChange} />
           <h3>{nameError}</h3>
         </div>
 
         <div className="grid-item">
           <label>Email address</label>
-          <input type="email" data-testid = 'email' value={email} onChange={handleEmailChange}/>
+          <input type="email" data-testid='email' value={email} onChange={handleEmailChange} />
           <h3>{emailError}</h3>
         </div>
 
@@ -116,20 +116,20 @@ const App = () => {
 
         <div className="grid-item">
           <label>Phone Number</label>
-          <input type="tel" data-testid = 'phoneNumber' value={phoneNumber} onChange={handlePhoneChange}/>
+          <input type="tel" data-testid='phoneNumber' value={phoneNumber} onChange={handlePhoneChange} />
           <h3>{phoneError}</h3>
         </div>
 
         <div className="grid-item">
           <label>Password</label>
-          <input type="password" data-testid = 'password' value={password} onChange={handlePasswordChange}/>
+          <input type="password" data-testid='password' value={password} onChange={handlePasswordChange} />
           <h3>{passwordError}</h3>
         </div>
 
         <div className="grid-item">
-          <button type="submit" data-testid = 'submit'>Submit</button>
+          <button type="submit" data-testid='submit'>Submit</button>
         </div>
-        
+
       </form>
     </div>
   )
